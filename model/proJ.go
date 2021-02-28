@@ -57,7 +57,7 @@ func (o ProJ) Create(params graphql.ResolveParams) (ProJ, error) {
 		o.Name = p["name"].(string)
 	}
 	//todo pages:[Page]!
-	o.UserId = p["userId"].(uint)
+	o.UserId = uint(p["userId"].(int))
 	o.Cover = p["cover"].(string)
 	err := db.Create(&o).Error
 	return o, err
