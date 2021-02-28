@@ -2,134 +2,85 @@ package model
 
 import "github.com/Fiber-Man/funplugin"
 
-type DeviceStatusEnumType uint
+// 设计器项目通用状态枚举类型
+type ProJCommonStatusEnumType uint
 
 const (
-	DeviceStatus_NONE     DeviceStatusEnumType = 0 // 未知
-	DeviceStatus_NORMAL   DeviceStatusEnumType = 1 // 正常
-	DeviceStatus_SHUTDOWN DeviceStatusEnumType = 2 // 停用
-	DeviceStatus_VERIFY   DeviceStatusEnumType = 3 // 校验
-	DeviceStatus_RETURN   DeviceStatusEnumType = 4 //  归还
+	P_ENABLE  ProJCommonStatusEnumType = 1 // 正常
+	P_DISABLE ProJCommonStatusEnumType = 2 // 停用
+	P_DELETE  ProJCommonStatusEnumType = 2 // 删除
 )
 
-func (s DeviceStatusEnumType) Enum() map[string]funplugin.EnumValue {
+func (s ProJCommonStatusEnumType) Enum() map[string]funplugin.EnumValue {
 	return map[string]funplugin.EnumValue{
-		"NONE": funplugin.EnumValue{
-			Value:       DeviceStatus_NONE,
-			Description: "未知",
-		},
-		"NORMAL": funplugin.EnumValue{
-			Value:       DeviceStatus_NORMAL,
+		"P_ENABLE": funplugin.EnumValue{
+			Value:       P_ENABLE,
 			Description: "正常",
 		},
-		"SHUTDOWN": funplugin.EnumValue{
-			Value:       DeviceStatus_SHUTDOWN,
+		"P_DISABLE": funplugin.EnumValue{
+			Value:       P_DISABLE,
 			Description: "停用",
 		},
-		"VERIFY": funplugin.EnumValue{
-			Value:       DeviceStatus_VERIFY,
-			Description: "校验",
-		},
-		"RETURN": funplugin.EnumValue{
-			Value:       DeviceStatus_RETURN,
-			Description: "归还",
+		"P_DELETE": funplugin.EnumValue{
+			Value:       P_DELETE,
+			Description: "删除",
 		},
 	}
 }
 
-type BorrowStatusEnumType uint
+// 画布页面种类枚举类型
+type PageTypeEnumType uint
 
 const (
-	BorrowStatus_NONE          BorrowStatusEnumType = 0 // 未知
-	BorrowStatus_NO_APPLY      BorrowStatusEnumType = 1 // 未申请
-	BorrowStatus_TOBE_BORROWED BorrowStatusEnumType = 2 // 待领用
-	BorrowStatus_TOBE_RETURNED BorrowStatusEnumType = 3 // 待归还
+	COVER       PageTypeEnumType = 1 // 封面
+	BACK_COVER  PageTypeEnumType = 2 // 封底
+	CERTIFICATE PageTypeEnumType = 3 // 证书
+	NORMAL      PageTypeEnumType = 4 // 普通
+	TITLE_PAGE  PageTypeEnumType = 5 // 扉页
 )
 
-func (s BorrowStatusEnumType) Enum() map[string]funplugin.EnumValue {
+func (s PageTypeEnumType) Enum() map[string]funplugin.EnumValue {
 	return map[string]funplugin.EnumValue{
-		"NONE": funplugin.EnumValue{
-			Value:       BorrowStatus_NONE,
-			Description: "未知",
+		"COVER": funplugin.EnumValue{
+			Value:       COVER,
+			Description: "封面",
 		},
-		"NO_APPLY": funplugin.EnumValue{
-			Value:       BorrowStatus_NO_APPLY,
-			Description: "未申请",
+		"BACK_COVER": funplugin.EnumValue{
+			Value:       BACK_COVER,
+			Description: "封底",
 		},
-		"TOBE_BORROWED": funplugin.EnumValue{
-			Value:       BorrowStatus_TOBE_BORROWED,
-			Description: "待领用",
+		"CERTIFICATE": funplugin.EnumValue{
+			Value:       CERTIFICATE,
+			Description: "证书",
 		},
-		"TOBE_RETURNED": funplugin.EnumValue{
-			Value:       BorrowStatus_TOBE_RETURNED,
-			Description: "待归还",
+		"NORMAL": funplugin.EnumValue{
+			Value:       NORMAL,
+			Description: "普通",
+		},
+		"TITLE_PAGE": funplugin.EnumValue{
+			Value:       TITLE_PAGE,
+			Description: "扉页",
 		},
 	}
 }
 
-type QueryTypeEnumType uint
+// 画布页面方向枚举类型
+type PageDirectionEnumType uint
 
 const (
-	QueryType_ID           QueryTypeEnumType = 1 // 设备编号
-	QueryType_NAME         QueryTypeEnumType = 2 // 设备名称
-	QueryType_TYPE         QueryTypeEnumType = 3 // 设备型号
-	QueryType_STATUS       QueryTypeEnumType = 4 // 设备状态
-	QueryType_BORROWSTATUE QueryTypeEnumType = 5 // 借用状态
+	V PageDirectionEnumType = 1 // 垂直方向
+	H PageDirectionEnumType = 2 // 水平方向
 )
 
-func (s QueryTypeEnumType) Enum() map[string]funplugin.EnumValue {
+func (s PageDirectionEnumType) Enum() map[string]funplugin.EnumValue {
 	return map[string]funplugin.EnumValue{
-		"ID": funplugin.EnumValue{
-			Value:       QueryType_ID,
-			Description: "设备编号",
+		"V": funplugin.EnumValue{
+			Value:       V,
+			Description: "垂直方向",
 		},
-		"NAME": funplugin.EnumValue{
-			Value:       QueryType_NAME,
-			Description: "设备名称",
-		},
-		"TYPE": funplugin.EnumValue{
-			Value:       QueryType_TYPE,
-			Description: "设备型号",
-		},
-		"STATUS": funplugin.EnumValue{
-			Value:       QueryType_STATUS,
-			Description: "设备状态",
-		},
-		"BORROWSTATUE": funplugin.EnumValue{
-			Value:       QueryType_BORROWSTATUE,
-			Description: "借用状态",
-		},
-	}
-}
-
-////////////////////////////////////////////////////////////
-
-type ApplyFormStatusEnumType uint
-
-const (
-	ApplyFormStatus_APPLIED  ApplyFormStatusEnumType = 1 // 申请
-	ApplyFormStatus_BORROWED ApplyFormStatusEnumType = 2 // 领用
-	ApplyFormStatus_RETURNED ApplyFormStatusEnumType = 3 // 归还
-	ApplyFormStatus_CANCEL   ApplyFormStatusEnumType = 4 // 取消
-)
-
-func (s ApplyFormStatusEnumType) Enum() map[string]funplugin.EnumValue {
-	return map[string]funplugin.EnumValue{
-		"APPLIED": funplugin.EnumValue{
-			Value:       ApplyFormStatus_APPLIED,
-			Description: "申请",
-		},
-		"BORROWED": funplugin.EnumValue{
-			Value:       ApplyFormStatus_BORROWED,
-			Description: "领用",
-		},
-		"RETURNED": funplugin.EnumValue{
-			Value:       ApplyFormStatus_RETURNED,
-			Description: "归还",
-		},
-		"CANCEL": funplugin.EnumValue{
-			Value:       ApplyFormStatus_CANCEL,
-			Description: "取消",
+		"H": funplugin.EnumValue{
+			Value:       H,
+			Description: "水平方向",
 		},
 	}
 }
