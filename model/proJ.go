@@ -18,11 +18,11 @@ type ProJ struct {
 	Status    ProJCommonStatusEnumType `gorm:"DEFAULT:1;NOT NULL;" gqlschema:"update;querys" description:"状态"`
 	Name      string                   `gorm:"Type:varchar(64);DEFAULT:'';NOT NULL;" gqlschema:"create!;update;querys" description:"项目名称"`
 	Cover     string                   `gorm:"Type:varchar(64);DEFAULT:'';NOT NULL;" gqlschema:"create!;update;querys" description:"封面"`
+	Pages     []Page                   `gorm:"Type:text;" gqlschema:"create;update" description:"画布"`
 	CreatedAt time.Time                `description:"创建时间" gqlschema:"querys"`
 	UpdatedAt time.Time                `description:"更新时间" gqlschema:"querys"`
 	DeletedAt *time.Time
 	v2        int `gorm:"-" exclude:"true"`
-	//pages:[Page] 画布
 }
 
 // 设计器项目集合

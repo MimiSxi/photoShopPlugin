@@ -31,11 +31,7 @@ type app struct {
 }
 
 func (a *app) Version() string {
-	// fmt.Printf("Plugin App Version: %s\n", Version)
-	// fmt.Printf("Buildstamp: %s\n", Buildstamp)
-	// fmt.Printf("GoVersion: %s\n", GoVersion)
-	// return Version
-	return "storeroom version"
+	return "photoShop version"
 }
 
 func (a *app) Init(db *gorm.DB) error {
